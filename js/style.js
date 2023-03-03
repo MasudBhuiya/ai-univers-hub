@@ -8,9 +8,7 @@ const allData = async(idloading) =>{
 
 const displayData = (data)=>{
     // data = data.slice(0, 6)
-    
     // const seeMore = document.getElementById('see-more');
-    
     console.log(data)
     const cardContainer = document.getElementById('card-container');
     
@@ -38,7 +36,7 @@ const displayData = (data)=>{
                     }</p>
                 </div>
             </div>
-            <div  class=" d-flex align-items-center text-danger" ><i onclick="" class="fa-sharp fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
+            <div  class=" d-flex align-items-center text-danger" onclick="detail()"><i  class="fa-sharp fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
         </div>
     </div>
     `
@@ -65,16 +63,20 @@ const toggleSpinner = isloading =>{
 
 const detail = () =>{
     const url = `
-    https://openapi.programming-hero.com/api/ai/tool/${1}`
+    https://openapi.programming-hero.com/api/ai/tool/01`
+    console.log(url)
     fetch(url)
     .then(res => res.json())
-    .then(data => displayDetail(data))
+    .then(data => console.log(data))
 }
 
 const displayDetail = (data) =>{
     console.log(data)
+    const showDetail = document.getElementById('details');
+    data.forEach(data=>{
+        console.log(data)
+    }) 
 }
-
 
 
 allData()
