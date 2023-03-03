@@ -7,22 +7,15 @@ const allData = async(idloading) =>{
 }
 
 const displayData = (data)=>{
-    // data = data.slice()
+    // data = data.slice(0, 6)
     
     // const seeMore = document.getElementById('see-more');
-    // if(data.length > 6){
-    //     data = data.slice(0, 6);
-    //     seeMore.classList.remove('d-none')
-    // }
-    // else{
-    //     seeMore.classList.add('d-none');
-    // }
     
     console.log(data)
     const cardContainer = document.getElementById('card-container');
-    // cardContainer.innerHTML ='';
+    
+    cardContainer.innerHTML ='';
     data.forEach(singleData => {
-        
         const createDiv = document.createElement('div');
     createDiv.classList.add('col');
     createDiv.innerHTML = `
@@ -51,7 +44,8 @@ const displayData = (data)=>{
     `
     cardContainer.appendChild(createDiv);
     });
-    toggleSpinner(false)
+    
+    toggleSpinner(false);
 }
 
 document.getElementById('btn-see-more').addEventListener('click', function(){
@@ -72,7 +66,13 @@ const toggleSpinner = isloading =>{
 const detail = () =>{
     const url = `
     https://openapi.programming-hero.com/api/ai/tool/${1}`
-    console.log(url);
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayDetail(data))
+}
+
+const displayDetail = (data) =>{
+    console.log(data)
 }
 
 
